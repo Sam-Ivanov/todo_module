@@ -6,7 +6,7 @@ const model = {
          arrayTodos = [];
       } else {
          this.arrayTodos = JSON.parse(localStorage.getItem('todos'));
-         if (!this.validLsArr(this.arrayTodos)) {
+         if (!this.isValidLsData(this.arrayTodos)) {
             localStorage.clear();
             this.arrayTodos = [];
             return;
@@ -31,6 +31,7 @@ const model = {
       this.arrayTodos.push(newTodo);                                    //пушим новую todo в массив todos
       this.setArrayLS(this.arrayTodos);                                      //отправляем обновленный массив todos в LS
       // createNewElement(id, text, newTodo.state, newTodo.activeRGBA, 'done', 'done-btn');
+      return newTodo;
    },
 
    removeTodo(id) {
@@ -70,7 +71,7 @@ const model = {
       return (Math.floor(rand));
    },
 
-   validLsArr(arr) {
+   isValidLsData(arr) {
       if (arr.length == 0) return true;
       return (arr[0].hasOwnProperty('id') &&
          arr[0].hasOwnProperty('text') &&
@@ -93,7 +94,7 @@ const model = {
 //Все ф-ции:
 /**
  * getArrayLS()        (model)                                       //===Получение массива todos из LS===
- * validLsArr(arr)     (model)                                     проверка на валидность данных из LS (на случай изменения структуры данных в массиве тудух)
+ * isValidLsData(arr)     (model)                                     проверка на валидность данных из LS (на случай изменения структуры данных в массиве тудух)
  * setArrayLS(arr)     (model)                                    //===Отправление массива todos в LS===
  * createNewTodo(text) (model)                                //===Создание нового todo===
  * generateID()        (model)                                       //===Генерация id по дате в мс===
