@@ -1,0 +1,4 @@
+﻿.ui-drag-clone {
+    position: absolute;
+    z-index: 1000;
+}
