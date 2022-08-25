@@ -1,6 +1,20 @@
 model.getArrayLS();
 view.renderInit(model.arrayTodos);
-//добавить switchActiveTab (внутри которого будет eventListener)
+view.todosFilter.showFilteredTodoElements(view.todosFilter.currentNavBtnClass);
+
+document.querySelector('.nav').addEventListener('click', e =>{
+   let navBtnTarget = e.target;
+   if(navBtnTarget.classList.contains('nav-btn')){
+      let navBtnList = document.querySelectorAll('.nav-btn');
+      navBtnList.forEach(el=>{
+         el.classList.remove('nav-current-btn');
+      })
+
+      navBtnTarget.classList.add('nav-current-btn');
+      view.todosFilter.showFilteredTodoElements(navBtnTarget.dataset.nav);
+      view.todosFilter.currentNavBtnClass = navBtnTarget.dataset.nav;
+   }
+})
 
 document.querySelector('.todos').addEventListener('click', e => {
    e.stopPropagation();
@@ -22,7 +36,8 @@ document.querySelector('.todos').addEventListener('click', e => {
          }
       })
       view.switchElement(target, rgba);
-      // hideElements(getCurrentNavBtn());     Изменить на showFilteredElements
+      view.todosFilter.showFilteredTodoElements(view.todosFilter.currentNavBtnClass);
+
    }
 })
 
@@ -34,5 +49,6 @@ document.querySelector('.header__form').addEventListener('submit', function (e) 
    view.createNewElement(newTodo.id, newTodo.text, newTodo.state, newTodo.activeRGBA, 'done', 'done-btn');
    e.target.reset();
    text.focus();
-   // hideElements(getCurrentNavBtn());
+   view.todosFilter.showFilteredTodoElements(view.todosFilter.currentNavBtnClass);
+
 })

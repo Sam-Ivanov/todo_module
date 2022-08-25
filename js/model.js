@@ -28,6 +28,7 @@ const model = {
          activeRGBA: [this.getRand(0, 255), this.getRand(0, 255), this.getRand(0, 255), 0.2],
          doneRGBA: [250, 250, 250, 1]
       };
+
       this.arrayTodos.push(newTodo);                                    //пушим новую todo в массив todos
       this.setArrayLS(this.arrayTodos);                                      //отправляем обновленный массив todos в LS
       // createNewElement(id, text, newTodo.state, newTodo.activeRGBA, 'done', 'done-btn');
@@ -68,6 +69,7 @@ const model = {
 
    getRand(min, max) {
       let rand = ((max + 1 - min) * Math.random()) + min;
+
       return (Math.floor(rand));
    },
 
@@ -82,6 +84,7 @@ const model = {
 
    render() {     //для отладки, просто выводит тудухи в консоль
       let arr = JSON.parse(localStorage.getItem('todos'));
+      
       if (arr === null || arr.length === 0) {
          console.log('Массив тудух пуст!');
          return;
