@@ -118,6 +118,7 @@ body {
   margin: 5px 5px 5px 5px;
   flex: 1 1 80%;
   min-height: 35px;
+  overflow: hidden;
 }
 
 .nav {
